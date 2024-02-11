@@ -1,0 +1,54 @@
+﻿<Page x:Class="Rpg_Game_New.Pages.HomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Rpg_Game_New.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="HomePage">
+
+    <Grid Background="#FFCACAC9">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <!--<Image Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="6"
+    Source="D:\user\Visual Studio\RPG_Game_Mongo\RPG_Game_Mongo\Images\warrior2.jpg" Margin="-29,-39,133,-38"></Image>
+        <Image Grid.ColumnSpan="4" Grid.Row="0" Grid.RowSpan="6"
+    Source="D:\user\Visual Studio\RPG_Game_Mongo\RPG_Game_Mongo\Images\rogue_new2.jpg" Margin="133,-6,109,-31" Grid.Column="1"/>
+        <Image Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="6"
+    Source="D:\user\Visual Studio\RPG_Game_Mongo\RPG_Game_Mongo\Images\rogue2.jpg" Margin="25,-30,-77,-33"></Image>-->
+
+        <TextBlock x:Name="WarriorTB" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
+           HorizontalAlignment="Center" VerticalAlignment="Center"
+           FontSize="40"  FontStyle="Oblique" Foreground="#FFFFFDFD" Text="Warrior" FontWeight="Bold"></TextBlock>
+        <TextBlock x:Name="RogueTB" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2"
+                HorizontalAlignment="Center" VerticalAlignment="Center"
+             FontSize="40"  FontStyle="Oblique" Foreground="#FFFFFDFD" Text="Rogue" FontWeight="Bold"></TextBlock>
+        <TextBlock x:Name="WizardTB" Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="2"
+            HorizontalAlignment="Center" VerticalAlignment="Center"
+            FontSize="40"  FontStyle="Oblique" Foreground="#FFFFFDFD" Text="Wizard" FontWeight="Bold"></TextBlock>
+
+        <Button x:Name="WarriorCharacterBT"  Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"
+        Width="150" Height="50" FontStyle="Oblique" FontSize="15" Click="WarriorCharacterBT_Click">Характеристики</Button>
+        <Button x:Name="RogueCharacterBT"  Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2"
+Width="150" Height="50" FontStyle="Oblique" FontSize="15" Click="RogueCharacterBT_Click">Характеристики</Button>
+        <Button x:Name="WizardCharacterBT"  Grid.Column="4" Grid.Row="3" Grid.ColumnSpan="2"
+Width="150" Height="50" FontStyle="Oblique" FontSize="15" Click="WizardCharacterBT_Click">Характеристики</Button>
+
+    </Grid>
+</Page>
