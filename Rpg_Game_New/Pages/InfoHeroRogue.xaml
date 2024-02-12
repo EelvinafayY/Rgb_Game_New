@@ -65,6 +65,7 @@
             <TextBlock Text="Axe" />
             <TextBlock Text="Rare Dagger" />
         </ComboBox>
+        
         <!--<Button x:Name="GetWeaponBT" Grid.Column="2" Grid.Row="7" 
                 HorizontalAlignment="Left" Margin="5"
         Width="80" Height="20" FontStyle="Oblique" FontSize="10">Choose</Button>-->

@@ -58,6 +58,7 @@ namespace Rpg_Game_New.Pages
                     MessageBox.Show("Недостаточно очков для изменения характеристики");
                 }
             }
+
             contextpers.Strenght = a;
             contextpers.Health = ((double.Parse(CountVitalityTBX.Text) * 1.5) + (double.Parse(CountStrenghtTBX.Text) * 0.5));
             contextpers.P_damage = double.Parse(CountStrenghtTBX.Text) * 0.5 + double.Parse(CountDextenityTBX.Text) * 0.5;
@@ -91,6 +92,7 @@ namespace Rpg_Game_New.Pages
                 CountStrenghtTBX.Text = a.ToString();
                 PointsInfoTB.Text = point.ToString();
             }
+            contextpers.Points = point;
             contextpers.Strenght = a;
             contextpers.Health = ((double.Parse(CountVitalityTBX.Text) * 1.5) + (double.Parse(CountStrenghtTBX.Text) * 0.5));
             contextpers.P_damage = double.Parse(CountStrenghtTBX.Text) * 0.5 + double.Parse(CountDextenityTBX.Text) * 0.5;
@@ -122,6 +124,7 @@ namespace Rpg_Game_New.Pages
                 }
 
             }
+            contextpers.Points = point;
             contextpers.Dextenity = a;
             contextpers.P_damage = double.Parse(CountStrenghtTBX.Text) * 0.5 + double.Parse(CountDextenityTBX.Text) * 0.5;
             contextpers.Armor = double.Parse(CountDextenityTBX.Text) * 1.5;
@@ -156,6 +159,7 @@ namespace Rpg_Game_New.Pages
                 CountDextenityTBX.Text = a.ToString();
                 PointsInfoTB.Text = point.ToString();
             }
+            contextpers.Points = point;
             contextpers.Dextenity = a;
             contextpers.P_damage = double.Parse(CountStrenghtTBX.Text) * 0.5 + double.Parse(CountDextenityTBX.Text) * 0.5;
             contextpers.Armor = double.Parse(CountDextenityTBX.Text) * 1.5;
@@ -188,6 +192,7 @@ namespace Rpg_Game_New.Pages
                     MessageBox.Show("Недостаточно очков для изменения характеристики");
                 }
             }
+            contextpers.Points = point;
             contextpers.Inteligence = a;
             contextpers.Mana = double.Parse(CountInteligenceTBX.Text) * 1.2;
             contextpers.M_defense = double.Parse(CountInteligenceTBX.Text) * 0.5;
@@ -222,6 +227,7 @@ namespace Rpg_Game_New.Pages
                 CountInteligenceTBX.Text = a.ToString();
                 PointsInfoTB.Text = point.ToString();
             }
+            contextpers.Points = point;
             contextpers.Inteligence = a;
             contextpers.Mana = double.Parse(CountInteligenceTBX.Text) * 1.2;
             contextpers.M_defense = double.Parse(CountInteligenceTBX.Text) * 0.5;
@@ -254,6 +260,7 @@ namespace Rpg_Game_New.Pages
                 }
 
             }
+            contextpers.Points = point;
             contextpers.Vitality = a;
             contextpers.Health = ((double.Parse(CountVitalityTBX.Text) * 1.5) + (double.Parse(CountStrenghtTBX.Text) * 0.5));
             MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
@@ -286,6 +293,7 @@ namespace Rpg_Game_New.Pages
                 CountVitalityTBX.Text = a.ToString();
                 PointsInfoTB.Text = point.ToString();
             }
+            contextpers.Points = point;
             contextpers.Vitality = a;
             contextpers.Health = ((double.Parse(CountVitalityTBX.Text) * 1.5) + (double.Parse(CountStrenghtTBX.Text) * 0.5));
             MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
@@ -388,9 +396,44 @@ namespace Rpg_Game_New.Pages
             contextpers.Name = NameTB.Text;
             MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
             DataContext = contextpers;
-            var persesRogue = MongoDBConnection.Get<Rogue>("Rgb_Game", "CharacterCollection");
-            var persRogue = persesRogue.FirstOrDefault(x => x.Name == NameTB.Text);
-            NavigationService.Navigate(new InfoHeroRogue(persRogue));
+            //var persesRogue = MongoDBConnection.Get<Rogue>("Rgb_Game", "CharacterCollection");
+            //var persRogue = persesRogue.FirstOrDefault(x => x.Name == NameTB.Text);
+            //NavigationService.Navigate(new InfoHeroRogue(persRogue));
         }
+
+        //private void SetInitialValueFromDatabase()
+        //{
+        //    // Получение значения из базы данных (пример работы с БД)
+        //    string weaponName = contextpers.Weapon.Name; // Ваш метод для получения значения из БД
+
+        //    // Находим соответствующий элемент в ComboBox и устанавливаем его в качестве выбранного
+        //    TextBlock selectedTextBlock = null;
+        //    foreach (TextBlock item in WeaponCB.Items)
+        //    {
+        //        if (item.Text == weaponName)
+        //        {
+        //            selectedTextBlock = item;
+        //            break;
+        //        }
+        //    }
+
+        //    if (selectedTextBlock != null)
+        //    {
+        //        WeaponCB.SelectedItem = selectedTextBlock; // Устанавливаем выбранный элемент
+        //    }
+        //    else
+        //    {
+        //        // В случае, если значение из базы данных отсутствует или равно null
+        //        // Можно установить какое-то дефолтное значение, например первый элемент
+        //        WeaponCB.SelectedItem = "Не выбрано";
+        //    }
+        //}
+
+        //private void Page_Loaded(object sender, RoutedEventArgs e)
+        //{
+        //    SetInitialValueFromDatabase(); // Вызываем метод для установки начального значения из базы данных
+        //}
+
+        
     }
 }
