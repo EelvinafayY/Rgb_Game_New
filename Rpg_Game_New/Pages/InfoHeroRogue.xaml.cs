@@ -78,22 +78,25 @@ namespace Rpg_Game_New.Pages
             {
                 CountStrenghtTBX.Text = contextpers.Max_Strenght.ToString();
             }
-            if (a < 0)
+            if(int.Parse(CountStrenghtTBX.Text) <= 20)
             {
-                CountStrenghtTBX.Text = 0.ToString();
+                CountStrenghtTBX.Text = 20.ToString();
+                contextpers.Strenght = 20;
             }
-            if (a >= 1)
-            {
-                CountStrenghtTBX.Text = a.ToString();
-                PointsInfoTB.Text = point.ToString();
-            }
-            if (a == 0)
+            if(int.Parse(CountStrenghtTBX.Text) > 20)
             {
                 CountStrenghtTBX.Text = a.ToString();
                 PointsInfoTB.Text = point.ToString();
+                contextpers.Strenght = a;
+                contextpers.Points = point;
             }
-            contextpers.Points = point;
-            contextpers.Strenght = a;
+            if (int.Parse(CountDextenityTBX.Text) > 30)
+            {
+                CountDextenityTBX.Text = a.ToString();
+                PointsInfoTB.Text = point.ToString();
+                contextpers.Dextenity = a;
+                contextpers.Points = point;
+            }
             contextpers.Health = ((double.Parse(CountVitalityTBX.Text) * 1.5) + (double.Parse(CountStrenghtTBX.Text) * 0.5));
             contextpers.P_damage = double.Parse(CountStrenghtTBX.Text) * 0.5 + double.Parse(CountDextenityTBX.Text) * 0.5;
             MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
@@ -145,22 +148,18 @@ namespace Rpg_Game_New.Pages
             {
                 CountDextenityTBX.Text = contextpers.Max_Dextenity.ToString();
             }
-            if (a < 0)
-            {
-                CountDextenityTBX.Text = 0.ToString();
-            }
-            if (a >= 1)
+            if (int.Parse(CountDextenityTBX.Text) > 30)
             {
                 CountDextenityTBX.Text = a.ToString();
                 PointsInfoTB.Text = point.ToString();
+                contextpers.Dextenity = a;
+                contextpers.Points = point;
             }
-            if (a == 0)
+            if(int.Parse(CountDextenityTBX.Text) <= 30)
             {
-                CountDextenityTBX.Text = a.ToString();
-                PointsInfoTB.Text = point.ToString();
+                CountDextenityTBX.Text = 30.ToString();
+                contextpers.Dextenity = 30;
             }
-            contextpers.Points = point;
-            contextpers.Dextenity = a;
             contextpers.P_damage = double.Parse(CountStrenghtTBX.Text) * 0.5 + double.Parse(CountDextenityTBX.Text) * 0.5;
             contextpers.Armor = double.Parse(CountDextenityTBX.Text) * 1.5;
             contextpers.Crt_chanse = double.Parse(CountDextenityTBX.Text) * 0.2;
@@ -217,18 +216,18 @@ namespace Rpg_Game_New.Pages
             {
                 CountInteligenceTBX.Text = 0.ToString();
             }
-            if (a >= 1)
+            if(int.Parse(CountInteligenceTBX.Text) < 15)
+            {
+                CountInteligenceTBX.Text = 15.ToString();
+                contextpers.Inteligence = 15;
+            }
+            if (int.Parse(CountInteligenceTBX.Text) > 15)
             {
                 CountInteligenceTBX.Text = a.ToString();
                 PointsInfoTB.Text = point.ToString();
+                contextpers.Inteligence = a;
+                contextpers.Points = point;
             }
-            if (a == 0)
-            {
-                CountInteligenceTBX.Text = a.ToString();
-                PointsInfoTB.Text = point.ToString();
-            }
-            contextpers.Points = point;
-            contextpers.Inteligence = a;
             contextpers.Mana = double.Parse(CountInteligenceTBX.Text) * 1.2;
             contextpers.M_defense = double.Parse(CountInteligenceTBX.Text) * 0.5;
             contextpers.M_damage = double.Parse(CountInteligenceTBX.Text) * 0.2;
@@ -279,22 +278,18 @@ namespace Rpg_Game_New.Pages
             {
                 CountVitalityTBX.Text = contextpers.Max_Vitality.ToString();
             }
-            if (a < 0)
+            if(int.Parse(CountVitalityTBX.Text) <= 20)
             {
-                CountVitalityTBX.Text = 0.ToString();
+                CountVitalityTBX.Text = 20.ToString();
+                contextpers.Vitality = 20;
             }
-            if (a >= 1)
-            {
-                CountVitalityTBX.Text = a.ToString();
-                PointsInfoTB.Text = point.ToString();
-            }
-            if (a == 0)
+            if (int.Parse(CountVitalityTBX.Text) > 20)
             {
                 CountVitalityTBX.Text = a.ToString();
                 PointsInfoTB.Text = point.ToString();
+                contextpers.Vitality = a;
+                contextpers.Points = point;
             }
-            contextpers.Points = point;
-            contextpers.Vitality = a;
             contextpers.Health = ((double.Parse(CountVitalityTBX.Text) * 1.5) + (double.Parse(CountStrenghtTBX.Text) * 0.5));
             MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
             DataContext = contextpers;
@@ -333,18 +328,10 @@ namespace Rpg_Game_New.Pages
             NavigationService.Navigate(new InfoHeroRogue(persRogue));
         }
 
-        //private void ReadyBT_Click(object sender, RoutedEventArgs e)
-        //{
-        //    var persesRogue = MongoDBConnection.Get<Rogue>("Rgb_Game", "CharacterCollection");
-        //    var persRogue = persesRogue.FirstOrDefault(x => x.Name == NameTB.Text);
-        //    NavigationService.Navigate(new InfoHeroRogue(persRogue));
-        //}
-
-  
         string weaponcontext;
         private void WeaponCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            weaponcontext = ((TextBlock)WeaponCB.SelectedItem).Text;
+            
             if (weaponcontext == "Wand")
             {
                 Weapon weapon = new Weapon("Wand", "Common");
@@ -396,9 +383,14 @@ namespace Rpg_Game_New.Pages
             contextpers.Name = NameTB.Text;
             MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
             DataContext = contextpers;
-            //var persesRogue = MongoDBConnection.Get<Rogue>("Rgb_Game", "CharacterCollection");
-            //var persRogue = persesRogue.FirstOrDefault(x => x.Name == NameTB.Text);
-            //NavigationService.Navigate(new InfoHeroRogue(persRogue));
+            
+        }
+
+        private void ChooseWeaponBT_Click(object sender, RoutedEventArgs e)
+        {
+            var persesRogue = MongoDBConnection.Get<Character>("Rgb_Game", "CharacterCollection");
+            var persRogue = persesRogue.FirstOrDefault(x => x.Name == NameTB.Text);
+            NavigationService.Navigate(new WeaponChoosePage(persRogue));
         }
 
         //private void SetInitialValueFromDatabase()
@@ -434,6 +426,6 @@ namespace Rpg_Game_New.Pages
         //    SetInitialValueFromDatabase(); // Вызываем метод для установки начального значения из базы данных
         //}
 
-        
+
     }
 }

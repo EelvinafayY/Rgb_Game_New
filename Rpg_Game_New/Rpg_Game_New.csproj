@@ -150,6 +150,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\WeaponChoosePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MongoDBConnection.cs" />
@@ -161,6 +165,9 @@
     </Compile>
     <Compile Include="Pages\NamePage.xaml.cs">
       <DependentUpon>NamePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\WeaponChoosePage.xaml.cs">
+      <DependentUpon>WeaponChoosePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
