@@ -146,6 +146,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\InfoWarriorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\InfoWizardPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\NamePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -162,6 +170,12 @@
     </Compile>
     <Compile Include="Pages\InfoHeroRogue.xaml.cs">
       <DependentUpon>InfoHeroRogue.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\InfoWarriorPage.xaml.cs">
+      <DependentUpon>InfoWarriorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\InfoWizardPage.xaml.cs">
+      <DependentUpon>InfoWizardPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\NamePage.xaml.cs">
       <DependentUpon>NamePage.xaml</DependentUpon>

@@ -1,0 +1,185 @@
+﻿<Page x:Class="Rpg_Game_New.Pages.InfoWarriorPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Rpg_Game_New.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="InfoWarriorPage">
+
+    <Grid Background="#FFCACAC9">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+
+        <TextBlock x:Name="NameTBX" Grid.Column="2" Grid.Row="0" Text="NAME"
+           HorizontalAlignment="Center" VerticalAlignment="Center"
+           FontSize="25" FontStyle="Oblique" FontWeight="Bold" Foreground="#FFFFFDFD"></TextBlock>
+        <TextBox x:Name="NameTB" Grid.Column="3" Grid.Row="0"
+         HorizontalAlignment="Center" VerticalAlignment="Center"
+         Width="100" Height="30" Foreground="Black" Background="#FFF3F3F3" FontStyle="Oblique" Text="{Binding Name}" TextChanged="NameTB_TextChanged"></TextBox>
+
+        <TextBlock x:Name="StrenghtTBX" Grid.Column="0" Grid.Row="3"
+           HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontStyle="Oblique" Foreground="#FFFFFDFD">Strenght</TextBlock>
+        <TextBlock x:Name="CountStrenghtTBX" Grid.Column="1" Grid.Row="3"
+           HorizontalAlignment="Center" VerticalAlignment="Center"
+            Width="100" Height="20" Foreground="Black" Background="#FFF3F3F3" FontStyle="Oblique" Text="{Binding Strenght}"></TextBlock>
+        <TextBlock x:Name="DextenityTBX" Grid.Column="0" Grid.Row="4"
+            HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontStyle="Oblique" Foreground="#FFFFFDFD">Dextenity</TextBlock>
+        <TextBlock x:Name="CountDextenityTBX" Grid.Column="1" Grid.Row="4"
+            HorizontalAlignment="Center" VerticalAlignment="Center"
+            Width="100" Height="20" Foreground="Black" Background="#FFF3F3F3" FontStyle="Oblique" Text="{Binding Dextenity}"></TextBlock>
+        <TextBlock x:Name="InteligenceTBX" Grid.Column="0" Grid.Row="5"
+           HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontStyle="Oblique" Foreground="#FFFFFDFD">Inteligence</TextBlock>
+        <TextBlock x:Name="CountInteligenceTBX" Grid.Column="1" Grid.Row="5"
+           HorizontalAlignment="Center" VerticalAlignment="Center"
+           Width="100" Height="20" Foreground="Black" Background="#FFF3F3F3" FontStyle="Oblique" Text="{Binding Inteligence}"></TextBlock>
+        <TextBlock x:Name="VitalityTBX" Grid.Column="0" Grid.Row="6"
+           HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontStyle="Oblique" Foreground="#FFFFFDFD">Vitality</TextBlock>
+        <TextBlock x:Name="CountVitalityTBX" Grid.Column="1" Grid.Row="6"
+           HorizontalAlignment="Center" VerticalAlignment="Center"
+           Width="100" Height="20" Foreground="Black" Background="#FFF3F3F3" FontStyle="Oblique" Text="{Binding Vitality}"></TextBlock>
+        <TextBlock x:Name="WeaponTBX" Grid.Column="0" Grid.Row="7"
+           HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontStyle="Oblique" Foreground="#FFFFFDFD">Weapon</TextBlock>
+        <TextBlock x:Name="WeaponCB" Grid.Column="1" Grid.Row="7" Width="100" Height="20" 
+                   Foreground="Black" Background="#FFF3F3F3" FontStyle="Oblique"
+                   Text="{Binding Weapon.Name}">
+        </TextBlock>
+        <Button x:Name="ChooseWeaponBT" Grid.Column="2" Grid.Row="7" 
+Width="80" Height="20" FontStyle="Oblique" FontSize="10"
+                HorizontalAlignment="Left" Margin="5" Click="ChooseWeaponBT_Click">Choose</Button>
+
+        <!--<Button x:Name="GetWeaponBT" Grid.Column="2" Grid.Row="7" 
+                HorizontalAlignment="Left" Margin="5"
+        Width="80" Height="20" FontStyle="Oblique" FontSize="10">Choose</Button>-->
+
+        <Button x:Name="PlusStrBT" Grid.Column="2" Grid.Row="3"
+        Content="+" Width="20" Height="20"
+        HorizontalAlignment="Left" VerticalAlignment="Top" Margin="3" Click="PlusStrBT_Click"></Button>
+        <Button x:Name="MinusStrBT" Grid.Column="2" Grid.Row="3"
+        Content="-" Width="20" Height="20"
+        HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="3" Click="MinusStrBT_Click"></Button>
+
+        <Button x:Name="PlusDexBT" Grid.Column="2" Grid.Row="4"
+Content="+" Width="20" Height="20"
+HorizontalAlignment="Left" VerticalAlignment="Top" Margin="3" Click="PlusDexBT_Click"></Button>
+        <Button x:Name="MinusDexBT" Grid.Column="2" Grid.Row="4"
+Content="-" Width="20" Height="20"
+HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="3" Click="MinusDexBT_Click"></Button>
+
+        <Button x:Name="PlusIntBT" Grid.Column="2" Grid.Row="5"
+Content="+" Width="20" Height="20"
+HorizontalAlignment="Left" VerticalAlignment="Top" Margin="3" Click="PlusIntBT_Click"></Button>
+        <Button x:Name="MinusIntBT" Grid.Column="2" Grid.Row="5"
+Content="-" Width="20" Height="20"
+HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="3" Click="MinusIntBT_Click"></Button>
+
+        <Button x:Name="PlusVitBT" Grid.Column="2" Grid.Row="6"
+Content="+" Width="20" Height="20"
+HorizontalAlignment="Left" VerticalAlignment="Top" Margin="3" Click="PlusVitBT_Click"></Button>
+        <Button x:Name="MinusVitBT" Grid.Column="2" Grid.Row="6"
+Content="-" Width="20" Height="20"
+HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="3" Click="MinusVitBT_Click"></Button>
+
+        <TextBlock x:Name="HealthTXB" Grid.Column="3" Grid.Row="1"
+           HorizontalAlignment="Center" VerticalAlignment="Center"
+           Text="Health" FontSize="15" FontStyle="Oblique" Foreground="#FFFFFDFD"></TextBlock>
+        <TextBlock x:Name="HealthInfoTBX" Grid.Column="4" Grid.Row="1"
+           HorizontalAlignment="Center" VerticalAlignment="Center"
+           Width="100" Height="20" Foreground="Black" Background="#FFF3F3F3" FontStyle="Oblique" Text="{Binding Health}"></TextBlock>
+
+        <TextBlock x:Name="ManaTXB" Grid.Column="3" Grid.Row="2"
+   HorizontalAlignment="Center" VerticalAlignment="Center"
+   Text="Mana" FontSize="15" FontStyle="Oblique" Foreground="#FFFFFDFD"></TextBlock>
+        <TextBlock x:Name="ManaInfoTBX" Grid.Column="4" Grid.Row="2"
+   HorizontalAlignment="Center" VerticalAlignment="Center"
+   Width="100" Height="20" Foreground="Black" Background="#FFF3F3F3" FontStyle="Oblique" Text="{Binding Mana}"></TextBlock>
+
+        <TextBlock x:Name="P_damageTXB" Grid.Column="3" Grid.Row="3"
+   HorizontalAlignment="Center" VerticalAlignment="Center"
+   Text="P.damage" FontSize="15" FontStyle="Oblique" Foreground="#FFFFFDFD"></TextBlock>
+        <TextBlock x:Name="P_damageInfoTBX" Grid.Column="4" Grid.Row="3"
+   HorizontalAlignment="Center" VerticalAlignment="Center"
+   Width="100" Height="20" Foreground="Black" Background="#FFF3F3F3" FontStyle="Oblique" Text="{Binding P_damage}"></TextBlock>
+
+        <TextBlock x:Name="ArmorTXB" Grid.Column="3" Grid.Row="4"
+   HorizontalAlignment="Center" VerticalAlignment="Center"
+   Text="Armor" FontSize="15" FontStyle="Oblique" Foreground="#FFFFFDFD"></TextBlock>
+        <TextBlock x:Name="ArmorInfoTBX" Grid.Column="4" Grid.Row="4"
+   HorizontalAlignment="Center" VerticalAlignment="Center"
+   Width="100" Height="20" Foreground="Black" Background="#FFF3F3F3" FontStyle="Oblique" Text="{Binding Armor}"></TextBlock>
+
+        <TextBlock x:Name="M_damageTXB" Grid.Column="3" Grid.Row="5"
+   HorizontalAlignment="Center" VerticalAlignment="Center"
+   Text="M.damage" FontSize="15" FontStyle="Oblique" Foreground="#FFFFFDFD"></TextBlock>
+        <TextBlock x:Name="M_damageInfoTBX" Grid.Column="4" Grid.Row="5"
+   HorizontalAlignment="Center" VerticalAlignment="Center"
+   Width="100" Height="20" Foreground="Black" Background="#FFF3F3F3" FontStyle="Oblique" Text="{Binding M_damage}"></TextBlock>
+
+        <TextBlock x:Name="M_defenseTXB" Grid.Column="3" Grid.Row="6"
+   HorizontalAlignment="Center" VerticalAlignment="Center"
+   Text="M.defense" FontSize="15" FontStyle="Oblique" Foreground="#FFFFFDFD"></TextBlock>
+        <TextBlock x:Name="M_defenseInfoTBX" Grid.Column="4" Grid.Row="6"
+   HorizontalAlignment="Center" VerticalAlignment="Center"
+   Width="100" Height="20" Foreground="Black" Background="#FFF3F3F3" FontStyle="Oblique" Text="{Binding M_defense}"></TextBlock>
+
+        <TextBlock x:Name="Crt_chanseTXB" Grid.Column="3" Grid.Row="7"
+   HorizontalAlignment="Center" VerticalAlignment="Center"
+   Text="Crt.chanse" FontSize="15" FontStyle="Oblique" Foreground="#FFFFFDFD"></TextBlock>
+        <TextBlock x:Name="Crt_chanseInfoTBX" Grid.Column="4" Grid.Row="7"
+   HorizontalAlignment="Center" VerticalAlignment="Center"
+   Width="100" Height="20" Foreground="Black" Background="#FFF3F3F3" FontStyle="Oblique" Text="{Binding Crt_chanse}"></TextBlock>
+
+        <TextBlock x:Name="Crt_damageTXB" Grid.Column="3" Grid.Row="8"
+   HorizontalAlignment="Center" VerticalAlignment="Center"
+   Text="Crt.damage" FontSize="15" FontStyle="Oblique" Foreground="#FFFFFDFD"></TextBlock>
+        <TextBlock x:Name="Crt_damageInfoTBX" Grid.Column="4" Grid.Row="8"
+   HorizontalAlignment="Center" VerticalAlignment="Center"
+   Width="100" Height="20" Foreground="Black" Background="#FFF3F3F3" FontStyle="Oblique" Text="{Binding Crt_damage}"></TextBlock>
+
+        <!--<Button x:Name="ReadyBT" Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="3"
+        Width="150" Height="40" FontStyle="Oblique" FontSize="15" Click="ReadyBT_Click">OK</Button>-->
+
+        <TextBlock x:Name="LevelTB" Grid.Column="0" Grid.Row="1"
+           HorizontalAlignment="Left" VerticalAlignment="Center"
+           Text="Level" FontSize="20" FontStyle="Oblique" Foreground="#FFFFFDFD" Margin="5"></TextBlock>
+        <TextBlock x:Name="LevelInfoTB" Grid.Column="0" Grid.Row="1"
+           HorizontalAlignment="Right" VerticalAlignment="Center"
+           FontSize="15" FontStyle="Oblique" 
+           Width="50" Height="20" Foreground="Black" Background="#FFF3F3F3" Margin="5" Text="{Binding Level}"></TextBlock>
+
+        <TextBlock x:Name="PointsTB" Grid.Column="1" Grid.Row="1"
+           HorizontalAlignment="Left" VerticalAlignment="Center"
+           Text="Points" FontSize="20" FontStyle="Oblique" Foreground="#FFFFFDFD" Margin="5"></TextBlock>
+        <TextBlock x:Name="PointsInfoTB" Grid.Column="1" Grid.Row="1"
+           HorizontalAlignment="Right" VerticalAlignment="Center"
+           FontSize="15" FontStyle="Oblique" 
+           Width="50" Height="20" Foreground="Black" Background="#FFF3F3F3" Margin="5" Text="{Binding Points}"></TextBlock>
+
+        <Button x:Name="UpLevelBT" Grid.Column="2" Grid.Row="1" Grid.RowSpan="2"
+        Width="100" Height="30" FontStyle="Oblique" FontSize="15" Click="UpLevelBT_Click">Up level</Button>
+        <TextBlock x:Name="LevelPointTBX" Grid.Column="0" Grid.Row="2"
+           HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontStyle="Oblique" Foreground="#FFFFFDFD">Level Points</TextBlock>
+        <TextBlock x:Name="CountLevelPointTBX" Grid.Column="1" Grid.Row="2"
+           HorizontalAlignment="Center" VerticalAlignment="Center"
+            Width="100" Height="20" Foreground="Black" Background="#FFF3F3F3" FontStyle="Oblique" Text="{Binding Levelpoints}"></TextBlock>
+    </Grid>
+</Page>

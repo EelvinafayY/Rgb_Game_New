@@ -13,28 +13,20 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Text.RegularExpressions;
-using MongoDB.Bson;
-using MongoDB.Driver;
-using MongoDB.Driver.Core.Configuration;
-using System.Xml.Linq;
-using System.Data.Common;
-using System.Security.RightsManagement;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Rpg_Game_New.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для InfoHeroRogue.xaml
+    /// Логика взаимодействия для InfoWizardPage.xaml
     /// </summary>
-    public partial class InfoHeroRogue : Page
+    public partial class InfoWizardPage : Page
     {
-        Rogue contextpers {  get; set; }
-        string selectedRogue;
-        public InfoHeroRogue(Rogue persRogue)
+        Wizard contextpers { get; set; }
+        string selectedWizard;
+        public InfoWizardPage(Wizard persWizard)
         {
             InitializeComponent();
-            contextpers = persRogue;
+            contextpers = persWizard;
             this.DataContext = contextpers;
         }
 
@@ -51,22 +43,22 @@ namespace Rpg_Game_New.Pages
                 if (point >= 0)
                 {
                     CountStrenghtTBX.Text = a.ToString();
-                    PointsInfoTB.Text = point.ToString(); ;
+                    PointsInfoTB.Text = point.ToString();
+                    contextpers.Strenght = a;
+                    contextpers.Points = point;
                 }
                 else
                 {
                     MessageBox.Show("Недостаточно очков для изменения характеристики");
                 }
             }
-
-            contextpers.Strenght = a;
             contextpers.Health = ((double.Parse(CountVitalityTBX.Text) * 1.5) + (double.Parse(CountStrenghtTBX.Text) * 0.5));
             contextpers.P_damage = double.Parse(CountStrenghtTBX.Text) * 0.5 + double.Parse(CountDextenityTBX.Text) * 0.5;
             MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
             DataContext = contextpers;
-            var persesRogue = MongoDBConnection.Get<Rogue>("Rgb_Game", "CharacterCollection");
-            var persRogue = persesRogue.FirstOrDefault(x => x.Name == NameTB.Text);
-            NavigationService.Navigate(new InfoHeroRogue(persRogue));
+            var persesWizard = MongoDBConnection.Get<Wizard>("Rgb_Game", "CharacterCollection");
+            var persWizard = persesWizard.FirstOrDefault(x => x.Name == NameTB.Text);
+            NavigationService.Navigate(new InfoWizardPage(persWizard));
 
         }
 
@@ -78,12 +70,12 @@ namespace Rpg_Game_New.Pages
             {
                 CountStrenghtTBX.Text = contextpers.Max_Strenght.ToString();
             }
-            if(int.Parse(CountStrenghtTBX.Text) <= 20)
+            if (int.Parse(CountStrenghtTBX.Text) <= 20)
             {
                 CountStrenghtTBX.Text = 20.ToString();
                 contextpers.Strenght = 20;
             }
-            if(int.Parse(CountStrenghtTBX.Text) > 20)
+            if (int.Parse(CountStrenghtTBX.Text) > 20)
             {
                 CountStrenghtTBX.Text = a.ToString();
                 PointsInfoTB.Text = point.ToString();
@@ -101,9 +93,9 @@ namespace Rpg_Game_New.Pages
             contextpers.P_damage = double.Parse(CountStrenghtTBX.Text) * 0.5 + double.Parse(CountDextenityTBX.Text) * 0.5;
             MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
             DataContext = contextpers;
-            var persesRogue = MongoDBConnection.Get<Rogue>("Rgb_Game", "CharacterCollection");
-            var persRogue = persesRogue.FirstOrDefault(x => x.Name == NameTB.Text);
-            NavigationService.Navigate(new InfoHeroRogue(persRogue));
+            var persesWizard = MongoDBConnection.Get<Wizard>("Rgb_Game", "CharacterCollection");
+            var persWizard = persesWizard.FirstOrDefault(x => x.Name == NameTB.Text);
+            NavigationService.Navigate(new InfoWizardPage(persWizard));
         }
 
         private void PlusDexBT_Click(object sender, RoutedEventArgs e)
@@ -119,7 +111,9 @@ namespace Rpg_Game_New.Pages
                 if (point >= 0)
                 {
                     CountDextenityTBX.Text = a.ToString();
-                    PointsInfoTB.Text = point.ToString(); ;
+                    PointsInfoTB.Text = point.ToString();
+                    contextpers.Points = point;
+                    contextpers.Dextenity = a;
                 }
                 else
                 {
@@ -127,17 +121,16 @@ namespace Rpg_Game_New.Pages
                 }
 
             }
-            contextpers.Points = point;
-            contextpers.Dextenity = a;
+            
             contextpers.P_damage = double.Parse(CountStrenghtTBX.Text) * 0.5 + double.Parse(CountDextenityTBX.Text) * 0.5;
             contextpers.Armor = double.Parse(CountDextenityTBX.Text) * 1.5;
             contextpers.Crt_chanse = double.Parse(CountDextenityTBX.Text) * 0.2;
             contextpers.Crt_damage = double.Parse(CountDextenityTBX.Text);
             MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
             DataContext = contextpers;
-            var persesRogue = MongoDBConnection.Get<Rogue>("Rgb_Game", "CharacterCollection");
-            var persRogue = persesRogue.FirstOrDefault(x => x.Name == NameTB.Text);
-            NavigationService.Navigate(new InfoHeroRogue(persRogue));
+            var persesWizard = MongoDBConnection.Get<Wizard>("Rgb_Game", "CharacterCollection");
+            var persWizard = persesWizard.FirstOrDefault(x => x.Name == NameTB.Text);
+            NavigationService.Navigate(new InfoWizardPage(persWizard));
         }
 
         private void MinusDexBT_Click(object sender, RoutedEventArgs e)
@@ -155,7 +148,7 @@ namespace Rpg_Game_New.Pages
                 contextpers.Dextenity = a;
                 contextpers.Points = point;
             }
-            if(int.Parse(CountDextenityTBX.Text) <= 30)
+            if (int.Parse(CountDextenityTBX.Text) <= 30)
             {
                 CountDextenityTBX.Text = 30.ToString();
                 contextpers.Dextenity = 30;
@@ -166,9 +159,9 @@ namespace Rpg_Game_New.Pages
             contextpers.Crt_damage = double.Parse(CountDextenityTBX.Text);
             MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
             DataContext = contextpers;
-            var persesRogue = MongoDBConnection.Get<Rogue>("Rgb_Game", "CharacterCollection");
-            var persRogue = persesRogue.FirstOrDefault(x => x.Name == NameTB.Text);
-            NavigationService.Navigate(new InfoHeroRogue(persRogue));
+            var persesWizard = MongoDBConnection.Get<Wizard>("Rgb_Game", "CharacterCollection");
+            var persWizard = persesWizard.FirstOrDefault(x => x.Name == NameTB.Text);
+            NavigationService.Navigate(new InfoWizardPage(persWizard));
         }
 
         private void PlusIntBT_Click(object sender, RoutedEventArgs e)
@@ -184,23 +177,24 @@ namespace Rpg_Game_New.Pages
                 if (point >= 0)
                 {
                     CountInteligenceTBX.Text = a.ToString();
-                    PointsInfoTB.Text = point.ToString(); ;
+                    PointsInfoTB.Text = point.ToString();
+                    contextpers.Points = point;
+                    contextpers.Inteligence = a;
                 }
                 else
                 {
                     MessageBox.Show("Недостаточно очков для изменения характеристики");
                 }
             }
-            contextpers.Points = point;
-            contextpers.Inteligence = a;
+           
             contextpers.Mana = double.Parse(CountInteligenceTBX.Text) * 1.2;
             contextpers.M_defense = double.Parse(CountInteligenceTBX.Text) * 0.5;
             contextpers.M_damage = double.Parse(CountInteligenceTBX.Text) * 0.2;
             MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
             DataContext = contextpers;
-            var persesRogue = MongoDBConnection.Get<Rogue>("Rgb_Game", "CharacterCollection");
-            var persRogue = persesRogue.FirstOrDefault(x => x.Name == NameTB.Text);
-            NavigationService.Navigate(new InfoHeroRogue(persRogue));
+            var persesWizard = MongoDBConnection.Get<Wizard>("Rgb_Game", "CharacterCollection");
+            var persWizard = persesWizard.FirstOrDefault(x => x.Name == NameTB.Text);
+            NavigationService.Navigate(new InfoWizardPage(persWizard));
 
         }
 
@@ -216,7 +210,7 @@ namespace Rpg_Game_New.Pages
             {
                 CountInteligenceTBX.Text = 0.ToString();
             }
-            if(int.Parse(CountInteligenceTBX.Text) < 15)
+            if (int.Parse(CountInteligenceTBX.Text) < 15)
             {
                 CountInteligenceTBX.Text = 15.ToString();
                 contextpers.Inteligence = 15;
@@ -233,9 +227,9 @@ namespace Rpg_Game_New.Pages
             contextpers.M_damage = double.Parse(CountInteligenceTBX.Text) * 0.2;
             MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
             DataContext = contextpers;
-            var persesRogue = MongoDBConnection.Get<Rogue>("Rgb_Game", "CharacterCollection");
-            var persRogue = persesRogue.FirstOrDefault(x => x.Name == NameTB.Text);
-            NavigationService.Navigate(new InfoHeroRogue(persRogue));
+            var persesWizard = MongoDBConnection.Get<Wizard>("Rgb_Game", "CharacterCollection");
+            var persWizard = persesWizard.FirstOrDefault(x => x.Name == NameTB.Text);
+            NavigationService.Navigate(new InfoWizardPage(persWizard));
         }
 
         private void PlusVitBT_Click(object sender, RoutedEventArgs e)
@@ -251,7 +245,9 @@ namespace Rpg_Game_New.Pages
                 if (point >= 0)
                 {
                     CountVitalityTBX.Text = a.ToString();
-                    PointsInfoTB.Text = point.ToString(); ;
+                    PointsInfoTB.Text = point.ToString();
+                    contextpers.Points = point;
+                    contextpers.Vitality = a;
                 }
                 else
                 {
@@ -259,14 +255,13 @@ namespace Rpg_Game_New.Pages
                 }
 
             }
-            contextpers.Points = point;
-            contextpers.Vitality = a;
+            
             contextpers.Health = ((double.Parse(CountVitalityTBX.Text) * 1.5) + (double.Parse(CountStrenghtTBX.Text) * 0.5));
             MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
             DataContext = contextpers;
-            var persesRogue = MongoDBConnection.Get<Rogue>("Rgb_Game", "CharacterCollection");
-            var persRogue = persesRogue.FirstOrDefault(x => x.Name == NameTB.Text);
-            NavigationService.Navigate(new InfoHeroRogue(persRogue));
+            var persesWizard = MongoDBConnection.Get<Wizard>("Rgb_Game", "CharacterCollection");
+            var persWizard = persesWizard.FirstOrDefault(x => x.Name == NameTB.Text);
+            NavigationService.Navigate(new InfoWizardPage(persWizard));
 
         }
 
@@ -278,7 +273,7 @@ namespace Rpg_Game_New.Pages
             {
                 CountVitalityTBX.Text = contextpers.Max_Vitality.ToString();
             }
-            if(int.Parse(CountVitalityTBX.Text) <= 20)
+            if (int.Parse(CountVitalityTBX.Text) <= 20)
             {
                 CountVitalityTBX.Text = 20.ToString();
                 contextpers.Vitality = 20;
@@ -293,9 +288,9 @@ namespace Rpg_Game_New.Pages
             contextpers.Health = ((double.Parse(CountVitalityTBX.Text) * 1.5) + (double.Parse(CountStrenghtTBX.Text) * 0.5));
             MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
             DataContext = contextpers;
-            var persesRogue = MongoDBConnection.Get<Rogue>("Rgb_Game", "CharacterCollection");
-            var persRogue = persesRogue.FirstOrDefault(x => x.Name == NameTB.Text);
-            NavigationService.Navigate(new InfoHeroRogue(persRogue));
+            var persesWizard = MongoDBConnection.Get<Wizard>("Rgb_Game", "CharacterCollection");
+            var persWizard = persesWizard.FirstOrDefault(x => x.Name == NameTB.Text);
+            NavigationService.Navigate(new InfoWizardPage(persWizard));
         }
 
         private void UpLevelBT_Click(object sender, RoutedEventArgs e)
@@ -323,23 +318,23 @@ namespace Rpg_Game_New.Pages
             contextpers.Levelpoints = int.Parse(CountLevelPointTBX.Text);
             MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
             DataContext = contextpers;
-            var persesRogue = MongoDBConnection.Get<Rogue>("Rgb_Game", "CharacterCollection");
-            var persRogue = persesRogue.FirstOrDefault(x => x.Name == NameTB.Text);
-            NavigationService.Navigate(new InfoHeroRogue(persRogue));
+            var persesWizard = MongoDBConnection.Get<Wizard>("Rgb_Game", "CharacterCollection");
+            var persWizard = persesWizard.FirstOrDefault(x => x.Name == NameTB.Text);
+            NavigationService.Navigate(new InfoWizardPage(persWizard));
         }
         private void NameTB_TextChanged(object sender, TextChangedEventArgs e)
         {
             contextpers.Name = NameTB.Text;
             MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
             DataContext = contextpers;
-            
+
         }
 
         private void ChooseWeaponBT_Click(object sender, RoutedEventArgs e)
         {
-            var persesRogue = MongoDBConnection.Get<Character>("Rgb_Game", "CharacterCollection");
-            var persRogue = persesRogue.FirstOrDefault(x => x.Name == NameTB.Text);
-            NavigationService.Navigate(new WeaponChoosePage(persRogue));
+            var persesWizard = MongoDBConnection.Get<Character>("Rgb_Game", "CharacterCollection");
+            var persWizard = persesWizard.FirstOrDefault(x => x.Name == NameTB.Text);
+            NavigationService.Navigate(new WeaponChoosePage(persWizard));
         }
     }
 }

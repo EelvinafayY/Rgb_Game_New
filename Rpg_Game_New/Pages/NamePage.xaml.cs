@@ -52,8 +52,11 @@ namespace Rpg_Game_New.Pages
             {
                 var persesWizard = MongoDBConnection.Get<Wizard>("Rgb_Game", "CharacterCollection");
                 var persWizard = persesWizard.FirstOrDefault(x => x.Name == name);
-                if (persWizard != null) { }
-                    //NavigationService.Navigate(new InfoWizard(persWizard));
+                if (persWizard != null) 
+                {
+                    NavigationService.Navigate(new InfoWizardPage(persWizard));
+                }
+                    
                 else
                 {
                     MongoDBConnection.CreateCharacterWizard(new Wizard(bname, name, 45, 15, 80, 20, 250, 35, 70, 15, 1, 10, 1000));
