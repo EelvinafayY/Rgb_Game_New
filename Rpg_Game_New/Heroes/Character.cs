@@ -9,6 +9,7 @@ namespace Rpg_Game_New.Heroes
 {
     public class Character
     {
+        //private Weapon _weapon;
         public Weapon Weapon {  get; set; }
         public ObjectId _id { get; set; }
         public string BaseName { get; set; }
@@ -16,13 +17,13 @@ namespace Rpg_Game_New.Heroes
 
 
         //настраиваемые характеристики
-        public int Strenght { get; set; }
+        public virtual int Strenght { get; set; }
         public int Max_Strenght { get; set; }
-        public int Dextenity { get; set; }
+        public virtual int Dextenity { get; set; }
         public int Max_Dextenity { get; set; }
-        public int Inteligence { get; set; }
+        public virtual int Inteligence { get; set; }
         public int Max_Inteligence { get; set; }
-        public int Vitality { get; set; }
+        public virtual int Vitality { get; set; }
         public int Max_Vitality { get; set; }
         //конструктор
         public Character(string basename, string name, int max_Strenght, int strenght, int max_Dextenity,
@@ -46,7 +47,7 @@ namespace Rpg_Game_New.Heroes
         //расчетные характеристики
         public double Health { get; set; }
         public double Mana { get; set; }
-        public double P_damage { get; set; }
+        public virtual double P_damage { get; set; }
         public double Armor { get; set; }
         public double M_damage { get; set; }
         public double M_defense { get; set; }
@@ -57,5 +58,8 @@ namespace Rpg_Game_New.Heroes
         public int Level { get; set; }
         public int Points { get; set; }
         public int Levelpoints { get; set; }
+
+        //Оружие
+        public bool ShieldAvailable { get; set; }
     }
 }

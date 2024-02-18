@@ -34,16 +34,24 @@ namespace Rpg_Game_New.Pages
             
             if (contextpers.Weapon == null)
             {
-                Weapon weapon = new Weapon("Wand", "Common");
+                Wand weapon = new Wand("Common");
                 contextpers.Weapon = weapon;
-                contextpers.Inteligence = contextpers.Inteligence + 5;
-                contextpers.P_damage = contextpers.P_damage + 2;
-                contextpers.Mana = contextpers.Mana + 5;
                 MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
+                contextpers.Inteligence += weapon.Inteligence;
+                contextpers.Dextenity += weapon.Dexterity;
+                contextpers.Strenght += weapon.Strength;
+                contextpers.Vitality += weapon.Vitality;
+                contextpers.Health += weapon.Health;
+                contextpers.Mana += weapon.Mana;
+                contextpers.P_damage += weapon.P_damage;
+                contextpers.Armor += weapon.Armor;
+                contextpers.M_damage += weapon.M_damage;
+                contextpers.M_defense += weapon.M_defense;
+                contextpers.Crt_chanse *= weapon.Crt_chanse;
+                contextpers.Crt_damage *= weapon.Crt_damage;
+                contextpers.ShieldAvailable = weapon.ShieldAvailable;
                 DataContext = contextpers;
-                var persesRogue = MongoDBConnection.Get<Rogue>("Rgb_Game", "CharacterCollection");
-                var persRogue = persesRogue.FirstOrDefault(x => x.Name == NameTB.Text);
-                NavigationService.Navigate(new InfoHeroRogue(persRogue));
+                MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);  
             }
             else
             {
@@ -53,286 +61,215 @@ namespace Rpg_Game_New.Pages
                 }
                 else 
                 {
-                    if (contextpers.Weapon.Name == "Dagger")
-                    {
-                        contextpers.Dextenity = contextpers.Dextenity - 4;
-                        contextpers.P_damage = contextpers.P_damage - 3;
-                        contextpers.Crt_chanse = contextpers.Crt_chanse / 1.6;
-                        contextpers.Crt_damage = contextpers.Crt_damage / 1.7;
-                    }
-                    if (contextpers.Weapon.Name == "Rare Dagger")
-                    {
-                        contextpers.Dextenity = contextpers.Dextenity - 6;
-                        contextpers.P_damage = contextpers.P_damage - 6;
-                        contextpers.Crt_chanse = contextpers.Crt_chanse / 1.7;
-                        contextpers.Crt_damage = contextpers.Crt_damage / 1.7;
-                        contextpers.Inteligence = contextpers.Inteligence - 5;
-                    }
-                    if (contextpers.Weapon.Name == "Axe")
-                    {
-                        contextpers.P_damage = contextpers.P_damage - 10;
-                        contextpers.Strenght = contextpers.Strenght - 10;
-                        contextpers.Crt_chanse = contextpers.Crt_chanse / 1.2;
-                        contextpers.Crt_damage = contextpers.Crt_damage / 2.7;
-                    }
+                    contextpers.Inteligence -= contextpers.Weapon.Inteligence;
+                    contextpers.Dextenity -= contextpers.Weapon.Dexterity;
+                    contextpers.Strenght -= contextpers.Weapon.Strength;
+                    contextpers.Vitality -= contextpers.Weapon.Vitality;
+                    contextpers.Health -= contextpers.Weapon.Health;
+                    contextpers.Mana -= contextpers.Weapon.Mana;
+                    contextpers.P_damage -= contextpers.Weapon.P_damage;
+                    contextpers.Armor -= contextpers.Weapon.Armor;
+                    contextpers.M_damage -= contextpers.Weapon.M_damage;
+                    contextpers.M_defense -= contextpers.Weapon.M_defense;
+                    contextpers.Crt_chanse /= contextpers.Weapon.Crt_chanse;
+                    contextpers.Crt_damage /= contextpers.Weapon.Crt_damage;
+                    contextpers.ShieldAvailable = true;
                     contextpers.Weapon = null;
-                    Weapon weapon = new Weapon("Wand", "Common");
+                    Weapon weapon = new Wand("Common");
                     contextpers.Weapon = weapon;
-                    contextpers.Inteligence = contextpers.Inteligence + 5;
-                    contextpers.P_damage = contextpers.P_damage + 2;
-                    contextpers.Mana = contextpers.Mana + 5;
+                    contextpers.Inteligence += weapon.Inteligence;
+                    contextpers.Dextenity += weapon.Dexterity;
+                    contextpers.Strenght += weapon.Strength;
+                    contextpers.Vitality += weapon.Vitality;
+                    contextpers.Health += weapon.Health;
+                    contextpers.Mana += weapon.Mana;
+                    contextpers.P_damage += weapon.P_damage;
+                    contextpers.Armor += weapon.Armor;
+                    contextpers.M_damage += weapon.M_damage;
+                    contextpers.M_defense += weapon.M_defense;
+                    contextpers.Crt_chanse *= weapon.Crt_chanse;
+                    contextpers.Crt_damage *= weapon.Crt_damage;
+                    contextpers.ShieldAvailable = weapon.ShieldAvailable;
                     MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
                     DataContext = contextpers;
                     
                 }
+                
+
+            }
+            if(contextpers.BaseName == "Rogue")
+            {
                 var persesRogue = MongoDBConnection.Get<Rogue>("Rgb_Game", "CharacterCollection");
                 var persRogue = persesRogue.FirstOrDefault(x => x.Name == NameTB.Text);
                 NavigationService.Navigate(new InfoHeroRogue(persRogue));
-
             }
             
         }
 
         private void MagicWandBT_Click(object sender, RoutedEventArgs e)
         {
-            if(contextpers.BaseName == "Rogue")
+            if(contextpers.Level <= 10)
             {
-                MessageBox.Show("К сожалению, вам недоступно данное оружие");
+                MessageBox.Show("К сожалению, ваш уровень не подходит для данного оружия");
             }
-        }
-
-        private void DaggerBT_Click(object sender, RoutedEventArgs e)
-        {
-            
-            if (contextpers.Weapon.Name == null)
-            {
-                Weapon weapon = new Weapon("Dagger", "Common");
-                contextpers.Weapon = weapon;
-                contextpers.Dextenity = contextpers.Dextenity + 4;
-                contextpers.P_damage = contextpers.P_damage + 3;
-                contextpers.Crt_chanse = contextpers.Crt_chanse * 1.6;
-                contextpers.Crt_damage = contextpers.Crt_damage * 1.6;
-                MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
-                DataContext = contextpers;
-                var persesRogue = MongoDBConnection.Get<Rogue>("Rgb_Game", "CharacterCollection");
-                var persRogue = persesRogue.FirstOrDefault(x => x.Name == NameTB.Text);
-                NavigationService.Navigate(new InfoHeroRogue(persRogue));
-            }
-           
             else
             {
-                if (contextpers.Weapon.Name == "Dagger")
+                if (contextpers.Weapon == null)
                 {
-                    MessageBox.Show("Данное оружие уже выбрано");
+                    Wand weapon = new Wand("Enchanted");
+                    contextpers.Weapon = weapon;
+                    MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
+                    contextpers.Inteligence += weapon.Inteligence;
+                    contextpers.Dextenity += weapon.Dexterity;
+                    contextpers.Strenght += weapon.Strength;
+                    contextpers.Vitality += weapon.Vitality;
+                    contextpers.Health += weapon.Health;
+                    contextpers.Mana += weapon.Mana;
+                    contextpers.P_damage += weapon.P_damage;
+                    contextpers.Armor += weapon.Armor;
+                    contextpers.M_damage += weapon.M_damage;
+                    contextpers.M_defense += weapon.M_defense;
+                    contextpers.Crt_chanse *= weapon.Crt_chanse;
+                    contextpers.Crt_damage *= weapon.Crt_damage;
+                    contextpers.ShieldAvailable = weapon.ShieldAvailable;
+                    DataContext = contextpers;
+                    MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
+                    var persesRogue = MongoDBConnection.Get<Rogue>("Rgb_Game", "CharacterCollection");
+                    var persRogue = persesRogue.FirstOrDefault(x => x.Name == NameTB.Text);
+                    NavigationService.Navigate(new InfoHeroRogue(persRogue));
+
                 }
                 else
                 {
-                    if (contextpers.Weapon.Name == "Rare Dagger")
+                    if (contextpers.Weapon.Name == "Enchanted Wand")
                     {
-                        contextpers.Dextenity = contextpers.Dextenity - 6;
-                        contextpers.P_damage = contextpers.P_damage - 6;
-                        contextpers.Crt_chanse = contextpers.Crt_chanse / 1.7;
-                        contextpers.Crt_damage = contextpers.Crt_damage / 1.7;
-                        contextpers.Inteligence = contextpers.Inteligence - 5;
+                        MessageBox.Show("Оружие уже выбрано");
                     }
-                    if (contextpers.Weapon.Name == "Axe")
+                    else
                     {
-                        contextpers.P_damage = contextpers.P_damage - 10;
-                        contextpers.Strenght = contextpers.Strenght - 10;
-                        contextpers.Crt_chanse = contextpers.Crt_chanse / 1.2;
-                        contextpers.Crt_damage = contextpers.Crt_damage / 2.7;
+                        contextpers.Inteligence -= contextpers.Weapon.Inteligence;
+                        contextpers.Dextenity -= contextpers.Weapon.Dexterity;
+                        contextpers.Strenght -= contextpers.Weapon.Strength;
+                        contextpers.Vitality -= contextpers.Weapon.Vitality;
+                        contextpers.Health -= contextpers.Weapon.Health;
+                        contextpers.Mana -= contextpers.Weapon.Mana;
+                        contextpers.P_damage -= contextpers.Weapon.P_damage;
+                        contextpers.Armor -= contextpers.Weapon.Armor;
+                        contextpers.M_damage -= contextpers.Weapon.M_damage;
+                        contextpers.M_defense -= contextpers.Weapon.M_defense;
+                        contextpers.Crt_chanse /= contextpers.Weapon.Crt_chanse;
+                        contextpers.Crt_damage /= contextpers.Weapon.Crt_damage;
+                        contextpers.ShieldAvailable = true;
+                        contextpers.Weapon = null;
+                        Weapon weapon = new Wand("Enchanted");
+                        contextpers.Weapon = weapon;
+                        contextpers.Inteligence += weapon.Inteligence;
+                        contextpers.Dextenity += weapon.Dexterity;
+                        contextpers.Strenght += weapon.Strength;
+                        contextpers.Vitality += weapon.Vitality;
+                        contextpers.Health += weapon.Health;
+                        contextpers.Mana += weapon.Mana;
+                        contextpers.P_damage += weapon.P_damage;
+                        contextpers.Armor += weapon.Armor;
+                        contextpers.M_damage += weapon.M_damage;
+                        contextpers.M_defense += weapon.M_defense;
+                        contextpers.Crt_chanse *= weapon.Crt_chanse;
+                        contextpers.Crt_damage *= weapon.Crt_damage;
+                        contextpers.ShieldAvailable = weapon.ShieldAvailable;
+                        MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
+                        DataContext = contextpers;
+
                     }
-                    if (contextpers.Weapon.Name == "Wand")
-                    {
-                        contextpers.Inteligence = contextpers.Inteligence - 5;
-                        contextpers.P_damage = contextpers.P_damage - 2;
-                        contextpers.Mana = contextpers.Mana - 5;
-                    }
-                    contextpers.Weapon = null;
-                    Weapon weapon = new Weapon("Dagger", "Common");
-                    contextpers.Weapon = weapon;
-                    contextpers.Dextenity = contextpers.Dextenity + 4;
-                    contextpers.P_damage = contextpers.P_damage + 3;
-                    contextpers.Crt_chanse = contextpers.Crt_chanse * 1.6;
-                    contextpers.Crt_damage = contextpers.Crt_damage * 1.6;
-                    MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
-                    DataContext = contextpers;
-                }             
-                var persesRogue = MongoDBConnection.Get<Rogue>("Rgb_Game", "CharacterCollection");
-                var persRogue = persesRogue.FirstOrDefault(x => x.Name == NameTB.Text);
-                NavigationService.Navigate(new InfoHeroRogue(persRogue));
+                    var persesRogue = MongoDBConnection.Get<Rogue>("Rgb_Game", "CharacterCollection");
+                    var persRogue = persesRogue.FirstOrDefault(x => x.Name == NameTB.Text);
+                    NavigationService.Navigate(new InfoHeroRogue(persRogue));
+
+                }
             }
             
         }
 
-        private void RareDaggerBT_Click(object sender, RoutedEventArgs e)
+        
+
+        private void RareWandBT_Click(object sender, RoutedEventArgs e)
         {
-            
-            if (contextpers.Weapon.Name == null)
+            if (contextpers.Level <= 30)
             {
-                Weapon weapon = new Weapon("Rare Dagger", "Rare");
-                contextpers.Weapon = weapon;
-                contextpers.Dextenity = contextpers.Dextenity + 6;
-                contextpers.P_damage = contextpers.P_damage + 6;
-                contextpers.Crt_chanse = contextpers.Crt_chanse * 1.7;
-                contextpers.Crt_damage = contextpers.Crt_damage * 1.7;
-                contextpers.Inteligence = contextpers.Inteligence + 5;
-                MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
-                DataContext = contextpers;
-                var persesRogue = MongoDBConnection.Get<Rogue>("Rgb_Game", "CharacterCollection");
-                var persRogue = persesRogue.FirstOrDefault(x => x.Name == NameTB.Text);
-                NavigationService.Navigate(new InfoHeroRogue(persRogue));
+                MessageBox.Show("К сожалению, ваш уровень не подходит для данного оружия");
             }
-            
             else
             {
-                if (contextpers.Weapon.Name == "Rare Dagger")
+                if (contextpers.Weapon == null)
                 {
-                    MessageBox.Show("Данное оружие уже выбрано");
+                    Wand weapon = new Wand("Rare");
+                    contextpers.Weapon = weapon;
+                    MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
+                    contextpers.Inteligence += weapon.Inteligence;
+                    contextpers.Dextenity += weapon.Dexterity;
+                    contextpers.Strenght += weapon.Strength;
+                    contextpers.Vitality += weapon.Vitality;
+                    contextpers.Health += weapon.Health;
+                    contextpers.Mana += weapon.Mana;
+                    contextpers.P_damage += weapon.P_damage;
+                    contextpers.Armor += weapon.Armor;
+                    contextpers.M_damage += weapon.M_damage;
+                    contextpers.M_defense += weapon.M_defense;
+                    contextpers.Crt_chanse *= weapon.Crt_chanse;
+                    contextpers.Crt_damage *= weapon.Crt_damage;
+                    contextpers.ShieldAvailable = weapon.ShieldAvailable;
+                    DataContext = contextpers;
+                    MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
+                    var persesRogue = MongoDBConnection.Get<Rogue>("Rgb_Game", "CharacterCollection");
+                    var persRogue = persesRogue.FirstOrDefault(x => x.Name == NameTB.Text);
+                    NavigationService.Navigate(new InfoHeroRogue(persRogue));
+
                 }
                 else
                 {
-                    if (contextpers.Weapon.Name == "Axe")
+                    if (contextpers.Weapon.Name == "Rare Wand")
                     {
-                        contextpers.P_damage = contextpers.P_damage - 10;
-                        contextpers.Strenght = contextpers.Strenght - 10;
-                        contextpers.Crt_chanse = contextpers.Crt_chanse / 1.2;
-                        contextpers.Crt_damage = contextpers.Crt_damage / 2.7;
+                        MessageBox.Show("Оружие уже выбрано");
                     }
-                    if (contextpers.Weapon.Name == "Wand")
+                    else
                     {
-                        contextpers.Inteligence = contextpers.Inteligence - 5;
-                        contextpers.P_damage = contextpers.P_damage - 2;
-                        contextpers.Mana = contextpers.Mana - 5;
+                        contextpers.Inteligence -= contextpers.Weapon.Inteligence;
+                        contextpers.Dextenity -= contextpers.Weapon.Dexterity;
+                        contextpers.Strenght -= contextpers.Weapon.Strength;
+                        contextpers.Vitality -= contextpers.Weapon.Vitality;
+                        contextpers.Health -= contextpers.Weapon.Health;
+                        contextpers.Mana -= contextpers.Weapon.Mana;
+                        contextpers.P_damage -= contextpers.Weapon.P_damage;
+                        contextpers.Armor -= contextpers.Weapon.Armor;
+                        contextpers.M_damage -= contextpers.Weapon.M_damage;
+                        contextpers.M_defense -= contextpers.Weapon.M_defense;
+                        contextpers.Crt_chanse /= contextpers.Weapon.Crt_chanse;
+                        contextpers.Crt_damage /= contextpers.Weapon.Crt_damage;
+                        contextpers.ShieldAvailable = true;
+                        contextpers.Weapon = null;
+                        Weapon weapon = new Wand("Rare");
+                        contextpers.Weapon = weapon;
+                        contextpers.Inteligence += weapon.Inteligence;
+                        contextpers.Dextenity += weapon.Dexterity;
+                        contextpers.Strenght += weapon.Strength;
+                        contextpers.Vitality += weapon.Vitality;
+                        contextpers.Health += weapon.Health;
+                        contextpers.Mana += weapon.Mana;
+                        contextpers.P_damage += weapon.P_damage;
+                        contextpers.Armor += weapon.Armor;
+                        contextpers.M_damage += weapon.M_damage;
+                        contextpers.M_defense += weapon.M_defense;
+                        contextpers.Crt_chanse *= weapon.Crt_chanse;
+                        contextpers.Crt_damage *= weapon.Crt_damage;
+                        contextpers.ShieldAvailable = weapon.ShieldAvailable;
+                        MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
+                        DataContext = contextpers;
+
                     }
-                    if (contextpers.Weapon.Name == "Dagger")
-                    {
-                        contextpers.Dextenity = contextpers.Dextenity - 4;
-                        contextpers.P_damage = contextpers.P_damage - 3;
-                        contextpers.Crt_chanse = contextpers.Crt_chanse / 1.6;
-                        contextpers.Crt_damage = contextpers.Crt_damage / 1.7;
-                    }
-                    contextpers.Weapon = null;
-                    Weapon weapon = new Weapon("Rare Dagger", "Rare");
-                    contextpers.Weapon = weapon;
-                    contextpers.Dextenity = contextpers.Dextenity + 6;
-                    contextpers.P_damage = contextpers.P_damage + 6;
-                    contextpers.Crt_chanse = contextpers.Crt_chanse * 1.7;
-                    contextpers.Crt_damage = contextpers.Crt_damage * 1.7;
-                    contextpers.Inteligence = contextpers.Inteligence + 5;
-                    MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
-                    DataContext = contextpers;
+                    var persesRogue = MongoDBConnection.Get<Rogue>("Rgb_Game", "CharacterCollection");
+                    var persRogue = persesRogue.FirstOrDefault(x => x.Name == NameTB.Text);
+                    NavigationService.Navigate(new InfoHeroRogue(persRogue));
+
                 }
-                
-                var persesRogue = MongoDBConnection.Get<Rogue>("Rgb_Game", "CharacterCollection");
-                var persRogue = persesRogue.FirstOrDefault(x => x.Name == NameTB.Text);
-                NavigationService.Navigate(new InfoHeroRogue(persRogue));
-            }
-            
-        }
-
-        private void SwordBT_Click(object sender, RoutedEventArgs e)
-        {
-            if (contextpers.BaseName == "Rogue")
-            {
-                MessageBox.Show("К сожалению, вам недоступно данное оружие");
-            }
-        }
-
-        private void RareSwordBT_Click(object sender, RoutedEventArgs e)
-        {
-            if (contextpers.BaseName == "Rogue")
-            {
-                MessageBox.Show("К сожалению, вам недоступно данное оружие");
-            }
-        }
-
-        private void AxeBT_Click(object sender, RoutedEventArgs e)
-        {
-          
-            if (contextpers.Weapon.Name == null)
-            {
-                Weapon weapon = new Weapon("Axe", "Common");
-                contextpers.Weapon = weapon;
-                contextpers.P_damage = contextpers.P_damage + 10;
-                contextpers.Strenght = contextpers.Strenght + 10;
-                contextpers.Crt_chanse = contextpers.Crt_chanse * 1.2;
-                contextpers.Crt_damage = contextpers.Crt_damage * 2.7;
-                MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
-                DataContext = contextpers;
-                var persesRogue = MongoDBConnection.Get<Rogue>("Rgb_Game", "CharacterCollection");
-                var persRogue = persesRogue.FirstOrDefault(x => x.Name == NameTB.Text);
-                NavigationService.Navigate(new InfoHeroRogue(persRogue));
-            }
-            
-            else
-            {
-                if (contextpers.Weapon.Name == "Axe")
-                {
-                    MessageBox.Show("Данное оружие уже выбрано");
-                }
-                else
-                {
-                    if (contextpers.Weapon.Name == "Wand")
-                    {
-                        contextpers.Inteligence = contextpers.Inteligence - 5;
-                        contextpers.P_damage = contextpers.P_damage - 2;
-                        contextpers.Mana = contextpers.Mana - 5;
-                    }
-                    if (contextpers.Weapon.Name == "Dagger")
-                    {
-                        contextpers.Dextenity = contextpers.Dextenity - 4;
-                        contextpers.P_damage = contextpers.P_damage - 3;
-                        contextpers.Crt_chanse = contextpers.Crt_chanse / 1.6;
-                        contextpers.Crt_damage = contextpers.Crt_damage / 1.7;
-                    }
-                    if (contextpers.Weapon.Name == "Rare Dagger")
-                    {
-                        contextpers.Dextenity = contextpers.Dextenity - 6;
-                        contextpers.P_damage = contextpers.P_damage - 6;
-                        contextpers.Crt_chanse = contextpers.Crt_chanse / 1.7;
-                        contextpers.Crt_damage = contextpers.Crt_damage / 1.7;
-                        contextpers.Inteligence = contextpers.Inteligence - 5;
-                    }
-                    contextpers.Weapon = null;
-                    Weapon weapon = new Weapon("Axe", "Common");
-                    contextpers.Weapon = weapon;
-                    contextpers.P_damage = contextpers.P_damage + 10;
-                    contextpers.Strenght = contextpers.Strenght + 10;
-                    contextpers.Crt_chanse = contextpers.Crt_chanse * 1.2;
-                    contextpers.Crt_damage = contextpers.Crt_damage / 2.7;
-                    MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
-                    DataContext = contextpers;
-                }
-                
-                var persesRogue = MongoDBConnection.Get<Rogue>("Rgb_Game", "CharacterCollection");
-                var persRogue = persesRogue.FirstOrDefault(x => x.Name == NameTB.Text);
-                NavigationService.Navigate(new InfoHeroRogue(persRogue));
-            }
-            
-        }
-
-        private void HammerBT_Click(object sender, RoutedEventArgs e)
-        {
-            if (contextpers.BaseName == "Rogue")
-            {
-                MessageBox.Show("К сожалению, вам недоступно данное оружие");
-            }
-        }
-
-        private void RareHammerBT_Click(object sender, RoutedEventArgs e)
-        {
-            if (contextpers.BaseName == "Rogue")
-            {
-                MessageBox.Show("К сожалению, вам недоступно данное оружие");
-            }
-        }
-
-        private void TwoHandedBT_Click(object sender, RoutedEventArgs e)
-        {
-            if (contextpers.BaseName == "Rogue")
-            {
-                MessageBox.Show("К сожалению, вам недоступно данное оружие");
             }
         }
     }

@@ -31,23 +31,23 @@
         Width="80" Height="60" FontStyle="Oblique" FontSize="10" Content="Wand" Click="WandBT_Click"></Button>
         <Button x:Name="MagicWandBT"   Grid.Column="2" Grid.Row="2" 
         Width="80" Height="60" FontStyle="Oblique" FontSize="10" Content="Magic Wand" Click="MagicWandBT_Click"></Button>
-        <Button x:Name="DaggerBT"   Grid.Column="3" Grid.Row="2" 
-        Width="80" Height="60" FontStyle="Oblique" FontSize="10" Content="Dagger" Click="DaggerBT_Click"></Button>
+        <Button x:Name="RareWandBT"   Grid.Column="3" Grid.Row="2" 
+        Width="80" Height="60" FontStyle="Oblique" FontSize="10" Content="Rare Wand" Click="RareWandBT_Click"></Button>
         <Button x:Name="RareDaggerBT"   Grid.Column="4" Grid.Row="2" 
-Width="80" Height="60" FontStyle="Oblique" FontSize="10" Content="Rare Dagger" Click="RareDaggerBT_Click"></Button>
+Width="80" Height="60" FontStyle="Oblique" FontSize="10" Content="Rare Dagger"></Button>
         <Button x:Name="SwordBT"   Grid.Column="5" Grid.Row="2" 
-Width="80" Height="60" FontStyle="Oblique" FontSize="10" Content="Sword" Click="SwordBT_Click"></Button>
+Width="80" Height="60" FontStyle="Oblique" FontSize="10" Content="Sword"></Button>
 
         <Button x:Name="RareSwordBT"   Grid.Column="1" Grid.Row="3" 
-Width="80" Height="60" FontStyle="Oblique" FontSize="10" Content="Rare Sword" Click="RareSwordBT_Click"></Button>
+Width="80" Height="60" FontStyle="Oblique" FontSize="10" Content="Rare Sword"></Button>
         <Button x:Name="AxeBT"   Grid.Column="2" Grid.Row="3" 
-Width="80" Height="60" FontStyle="Oblique" FontSize="10" Content="Axe" Click="AxeBT_Click"></Button>
+Width="80" Height="60" FontStyle="Oblique" FontSize="10" Content="Axe"></Button>
         <Button x:Name="HammerBT"   Grid.Column="3" Grid.Row="3" 
-Width="80" Height="60" FontStyle="Oblique" FontSize="10" Content="Hammer" Click="HammerBT_Click"></Button>
+Width="80" Height="60" FontStyle="Oblique" FontSize="10" Content="Hammer"></Button>
         <Button x:Name="RareHammerBT"   Grid.Column="4" Grid.Row="3" 
-Width="80" Height="60" FontStyle="Oblique" FontSize="10" Content="Rare Hammer" Click="RareHammerBT_Click"></Button>
+Width="80" Height="60" FontStyle="Oblique" FontSize="10" Content="Rare Hammer"></Button>
         <Button x:Name="TwoHandedBT"   Grid.Column="5" Grid.Row="3" 
-Width="80" Height="60" FontStyle="Oblique" FontSize="10" Content="Two Handed" Click="TwoHandedBT_Click"></Button>
+Width="80" Height="60" FontStyle="Oblique" FontSize="10" Content="Two Handed"></Button>
 
         <TextBlock x:Name="NameTBX" Grid.Column="2" Grid.Row="0" Text="NAME"
    HorizontalAlignment="Center" VerticalAlignment="Center"

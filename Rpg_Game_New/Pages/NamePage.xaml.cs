@@ -66,8 +66,10 @@ namespace Rpg_Game_New.Pages
             {
                 var persesWarroir = MongoDBConnection.Get<Warrior>("Rgb_Game", "CharacterCollection");
                 var persWarrior = persesWarroir.FirstOrDefault(x => x.Name == name);
-                if (persWarrior != null) { }
-                    //NavigationService.Navigate(new InfoWarrior(persWarrior));
+                if (persWarrior != null) 
+                {
+                    NavigationService.Navigate(new InfoWarriorPage(persWarrior));
+                }
                 else
                 {
                     MongoDBConnection.CreateCharacterWarrior(new Warrior(bname, name, 250, 30, 80, 15, 50, 10, 100, 25, 1, 10, 1000));

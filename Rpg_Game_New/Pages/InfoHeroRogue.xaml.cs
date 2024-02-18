@@ -35,6 +35,17 @@ namespace Rpg_Game_New.Pages
         {
             InitializeComponent();
             contextpers = persRogue;
+            contextpers.Inteligence += 1;
+            contextpers.Dextenity += 1;
+            contextpers.Strenght += 1;
+            contextpers.Vitality += 1;
+            MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
+            contextpers = persRogue;
+            contextpers.Inteligence -= 1;
+            contextpers.Dextenity -= 1;
+            contextpers.Strenght -= 1;
+            contextpers.Vitality -= 1;
+            MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
             this.DataContext = contextpers;
         }
 
@@ -51,18 +62,15 @@ namespace Rpg_Game_New.Pages
                 if (point >= 0)
                 {
                     CountStrenghtTBX.Text = a.ToString();
-                    PointsInfoTB.Text = point.ToString(); ;
+                    PointsInfoTB.Text = point.ToString();
+                    contextpers.Strenght = a;
                 }
                 else
                 {
                     MessageBox.Show("Недостаточно очков для изменения характеристики");
                 }
             }
-
-            contextpers.Strenght = a;
-            contextpers.Health = ((double.Parse(CountVitalityTBX.Text) * 1.5) + (double.Parse(CountStrenghtTBX.Text) * 0.5));
-            contextpers.P_damage = double.Parse(CountStrenghtTBX.Text) * 0.5 + double.Parse(CountDextenityTBX.Text) * 0.5;
-            MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
+            MongoDBConnection.UpdateRogue(contextpers as Rogue);
             DataContext = contextpers;
             var persesRogue = MongoDBConnection.Get<Rogue>("Rgb_Game", "CharacterCollection");
             var persRogue = persesRogue.FirstOrDefault(x => x.Name == NameTB.Text);
@@ -97,9 +105,7 @@ namespace Rpg_Game_New.Pages
                 contextpers.Dextenity = a;
                 contextpers.Points = point;
             }
-            contextpers.Health = ((double.Parse(CountVitalityTBX.Text) * 1.5) + (double.Parse(CountStrenghtTBX.Text) * 0.5));
-            contextpers.P_damage = double.Parse(CountStrenghtTBX.Text) * 0.5 + double.Parse(CountDextenityTBX.Text) * 0.5;
-            MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
+            MongoDBConnection.UpdateRogue(contextpers as Rogue);
             DataContext = contextpers;
             var persesRogue = MongoDBConnection.Get<Rogue>("Rgb_Game", "CharacterCollection");
             var persRogue = persesRogue.FirstOrDefault(x => x.Name == NameTB.Text);
@@ -119,7 +125,9 @@ namespace Rpg_Game_New.Pages
                 if (point >= 0)
                 {
                     CountDextenityTBX.Text = a.ToString();
-                    PointsInfoTB.Text = point.ToString(); ;
+                    PointsInfoTB.Text = point.ToString();
+                    contextpers.Points = point;
+                    contextpers.Dextenity = a;
                 }
                 else
                 {
@@ -127,13 +135,7 @@ namespace Rpg_Game_New.Pages
                 }
 
             }
-            contextpers.Points = point;
-            contextpers.Dextenity = a;
-            contextpers.P_damage = double.Parse(CountStrenghtTBX.Text) * 0.5 + double.Parse(CountDextenityTBX.Text) * 0.5;
-            contextpers.Armor = double.Parse(CountDextenityTBX.Text) * 1.5;
-            contextpers.Crt_chanse = double.Parse(CountDextenityTBX.Text) * 0.2;
-            contextpers.Crt_damage = double.Parse(CountDextenityTBX.Text);
-            MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
+            MongoDBConnection.UpdateRogue(contextpers as Rogue);
             DataContext = contextpers;
             var persesRogue = MongoDBConnection.Get<Rogue>("Rgb_Game", "CharacterCollection");
             var persRogue = persesRogue.FirstOrDefault(x => x.Name == NameTB.Text);
@@ -160,11 +162,7 @@ namespace Rpg_Game_New.Pages
                 CountDextenityTBX.Text = 30.ToString();
                 contextpers.Dextenity = 30;
             }
-            contextpers.P_damage = double.Parse(CountStrenghtTBX.Text) * 0.5 + double.Parse(CountDextenityTBX.Text) * 0.5;
-            contextpers.Armor = double.Parse(CountDextenityTBX.Text) * 1.5;
-            contextpers.Crt_chanse = double.Parse(CountDextenityTBX.Text) * 0.2;
-            contextpers.Crt_damage = double.Parse(CountDextenityTBX.Text);
-            MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
+            MongoDBConnection.UpdateRogue(contextpers as Rogue);
             DataContext = contextpers;
             var persesRogue = MongoDBConnection.Get<Rogue>("Rgb_Game", "CharacterCollection");
             var persRogue = persesRogue.FirstOrDefault(x => x.Name == NameTB.Text);
@@ -184,19 +182,16 @@ namespace Rpg_Game_New.Pages
                 if (point >= 0)
                 {
                     CountInteligenceTBX.Text = a.ToString();
-                    PointsInfoTB.Text = point.ToString(); ;
+                    PointsInfoTB.Text = point.ToString();
+                    contextpers.Points = point;
+                    contextpers.Inteligence = a;
                 }
                 else
                 {
                     MessageBox.Show("Недостаточно очков для изменения характеристики");
                 }
             }
-            contextpers.Points = point;
-            contextpers.Inteligence = a;
-            contextpers.Mana = double.Parse(CountInteligenceTBX.Text) * 1.2;
-            contextpers.M_defense = double.Parse(CountInteligenceTBX.Text) * 0.5;
-            contextpers.M_damage = double.Parse(CountInteligenceTBX.Text) * 0.2;
-            MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
+            MongoDBConnection.UpdateRogue(contextpers as Rogue);
             DataContext = contextpers;
             var persesRogue = MongoDBConnection.Get<Rogue>("Rgb_Game", "CharacterCollection");
             var persRogue = persesRogue.FirstOrDefault(x => x.Name == NameTB.Text);
@@ -228,10 +223,7 @@ namespace Rpg_Game_New.Pages
                 contextpers.Inteligence = a;
                 contextpers.Points = point;
             }
-            contextpers.Mana = double.Parse(CountInteligenceTBX.Text) * 1.2;
-            contextpers.M_defense = double.Parse(CountInteligenceTBX.Text) * 0.5;
-            contextpers.M_damage = double.Parse(CountInteligenceTBX.Text) * 0.2;
-            MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
+            MongoDBConnection.UpdateRogue(contextpers as Rogue);
             DataContext = contextpers;
             var persesRogue = MongoDBConnection.Get<Rogue>("Rgb_Game", "CharacterCollection");
             var persRogue = persesRogue.FirstOrDefault(x => x.Name == NameTB.Text);
@@ -251,7 +243,9 @@ namespace Rpg_Game_New.Pages
                 if (point >= 0)
                 {
                     CountVitalityTBX.Text = a.ToString();
-                    PointsInfoTB.Text = point.ToString(); ;
+                    PointsInfoTB.Text = point.ToString();
+                    contextpers.Points = point;
+                    contextpers.Vitality = a;
                 }
                 else
                 {
@@ -259,10 +253,8 @@ namespace Rpg_Game_New.Pages
                 }
 
             }
-            contextpers.Points = point;
-            contextpers.Vitality = a;
-            contextpers.Health = ((double.Parse(CountVitalityTBX.Text) * 1.5) + (double.Parse(CountStrenghtTBX.Text) * 0.5));
-            MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
+           
+            MongoDBConnection.UpdateRogue(contextpers as Rogue);
             DataContext = contextpers;
             var persesRogue = MongoDBConnection.Get<Rogue>("Rgb_Game", "CharacterCollection");
             var persRogue = persesRogue.FirstOrDefault(x => x.Name == NameTB.Text);
@@ -290,8 +282,7 @@ namespace Rpg_Game_New.Pages
                 contextpers.Vitality = a;
                 contextpers.Points = point;
             }
-            contextpers.Health = ((double.Parse(CountVitalityTBX.Text) * 1.5) + (double.Parse(CountStrenghtTBX.Text) * 0.5));
-            MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
+            MongoDBConnection.UpdateRogue(contextpers as Rogue);
             DataContext = contextpers;
             var persesRogue = MongoDBConnection.Get<Rogue>("Rgb_Game", "CharacterCollection");
             var persRogue = persesRogue.FirstOrDefault(x => x.Name == NameTB.Text);
@@ -321,7 +312,7 @@ namespace Rpg_Game_New.Pages
             contextpers.Level = int.Parse(LevelInfoTB.Text);
             contextpers.Points = int.Parse(PointsInfoTB.Text);
             contextpers.Levelpoints = int.Parse(CountLevelPointTBX.Text);
-            MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
+            MongoDBConnection.UpdateRogue(contextpers as Rogue);
             DataContext = contextpers;
             var persesRogue = MongoDBConnection.Get<Rogue>("Rgb_Game", "CharacterCollection");
             var persRogue = persesRogue.FirstOrDefault(x => x.Name == NameTB.Text);
@@ -330,7 +321,7 @@ namespace Rpg_Game_New.Pages
         private void NameTB_TextChanged(object sender, TextChangedEventArgs e)
         {
             contextpers.Name = NameTB.Text;
-            MongoDBConnection.Put("Rgb_Game", "CharacterCollection", contextpers._id, contextpers);
+            MongoDBConnection.UpdateRogue(contextpers as Rogue);
             DataContext = contextpers;
             
         }

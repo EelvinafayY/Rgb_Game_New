@@ -74,6 +74,33 @@ namespace Rpg_Game_New
             collection.InsertOne(character);
         }
 
+        public static void UpdateRogue(Rogue rogue)
+        {
+            var client = new MongoClient(connectionString);
+            var database = client.GetDatabase("Rgb_Game");
+            var collection = database.GetCollection<Rogue>("CharacterCollection");
+            var filter = Builders<Rogue>.Filter.Eq(i => i._id, rogue._id);
+            collection.ReplaceOne(filter, rogue);
+        }
+
+        public static void UpdateWarrior(Warrior warrior)
+        {
+            var client = new MongoClient(connectionString);
+            var database = client.GetDatabase("Rgb_Game");
+            var collection = database.GetCollection<Warrior>("CharacterCollection");
+            var filter = Builders<Warrior>.Filter.Eq(i => i._id, warrior._id);
+            collection.ReplaceOne(filter, warrior);
+        }
+
+        public static void UpdateWizard(Wizard wizard)
+        {
+            var client = new MongoClient(connectionString);
+            var database = client.GetDatabase("Rgb_Game");
+            var collection = database.GetCollection<Wizard>("CharacterCollection");
+            var filter = Builders<Wizard>.Filter.Eq(i => i._id, wizard._id);
+            collection.ReplaceOne(filter, wizard);
+        }
+
         //public static Character GetCharacterWarrior(string name)
         //{
         //    var client = new MongoClient(connectionString);

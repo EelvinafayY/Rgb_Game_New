@@ -129,8 +129,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Heroes\Axe.cs" />
     <Compile Include="Heroes\Character.cs" />
+    <Compile Include="Heroes\Dagger.cs" />
+    <Compile Include="Heroes\Hammer.cs" />
     <Compile Include="Heroes\Rogue.cs" />
+    <Compile Include="Heroes\Staff.cs" />
+    <Compile Include="Heroes\Sword.cs" />
+    <Compile Include="Heroes\Wand.cs" />
     <Compile Include="Heroes\Warrior.cs" />
     <Compile Include="Heroes\Weapon.cs" />
     <Compile Include="Heroes\Wizard.cs" />
