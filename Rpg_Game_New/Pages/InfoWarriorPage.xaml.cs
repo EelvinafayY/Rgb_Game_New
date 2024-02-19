@@ -79,17 +79,10 @@ namespace Rpg_Game_New.Pages
             {
                 CountStrenghtTBX.Text = contextpers.Max_Strenght.ToString();
             }
-            if (int.Parse(CountStrenghtTBX.Text) <= 20)
+            if (int.Parse(CountStrenghtTBX.Text) <= 30)
             {
-                CountStrenghtTBX.Text = 20.ToString();
-                contextpers.Strenght = 20;
-            }
-            if (int.Parse(CountStrenghtTBX.Text) > 20)
-            {
-                CountStrenghtTBX.Text = a.ToString();
-                PointsInfoTB.Text = point.ToString();
-                contextpers.Strenght = a;
-                contextpers.Points = point;
+                CountStrenghtTBX.Text = 30.ToString();
+                contextpers.Strenght = 30;
             }
             if (int.Parse(CountDextenityTBX.Text) > 30)
             {
@@ -144,17 +137,17 @@ namespace Rpg_Game_New.Pages
             {
                 CountDextenityTBX.Text = contextpers.Max_Dextenity.ToString();
             }
-            if (int.Parse(CountDextenityTBX.Text) > 30)
+            if (int.Parse(CountDextenityTBX.Text) > 15)
             {
                 CountDextenityTBX.Text = a.ToString();
                 PointsInfoTB.Text = point.ToString();
                 contextpers.Dextenity = a;
                 contextpers.Points = point;
             }
-            if (int.Parse(CountDextenityTBX.Text) <= 30)
+            if (int.Parse(CountDextenityTBX.Text) <= 15)
             {
-                CountDextenityTBX.Text = 30.ToString();
-                contextpers.Dextenity = 30;
+                CountDextenityTBX.Text = 15.ToString();
+                contextpers.Dextenity = 15;
             }
             MongoDBConnection.UpdateWarrior(contextpers as Warrior);
             DataContext = contextpers;
@@ -205,12 +198,12 @@ namespace Rpg_Game_New.Pages
             {
                 CountInteligenceTBX.Text = 0.ToString();
             }
-            if (int.Parse(CountInteligenceTBX.Text) < 15)
+            if (int.Parse(CountInteligenceTBX.Text) < 10)
             {
-                CountInteligenceTBX.Text = 15.ToString();
-                contextpers.Inteligence = 15;
+                CountInteligenceTBX.Text = 10.ToString();
+                contextpers.Inteligence = 10;
             }
-            if (int.Parse(CountInteligenceTBX.Text) > 15)
+            if (int.Parse(CountInteligenceTBX.Text) > 10)
             {
                 CountInteligenceTBX.Text = a.ToString();
                 PointsInfoTB.Text = point.ToString();
@@ -263,12 +256,12 @@ namespace Rpg_Game_New.Pages
             {
                 CountVitalityTBX.Text = contextpers.Max_Vitality.ToString();
             }
-            if (int.Parse(CountVitalityTBX.Text) <= 20)
+            if (int.Parse(CountVitalityTBX.Text) <= 25)
             {
-                CountVitalityTBX.Text = 20.ToString();
-                contextpers.Vitality = 20;
+                CountVitalityTBX.Text = 25.ToString();
+                contextpers.Vitality = 25;
             }
-            if (int.Parse(CountVitalityTBX.Text) > 20)
+            if (int.Parse(CountVitalityTBX.Text) > 25)
             {
                 CountVitalityTBX.Text = a.ToString();
                 PointsInfoTB.Text = point.ToString();

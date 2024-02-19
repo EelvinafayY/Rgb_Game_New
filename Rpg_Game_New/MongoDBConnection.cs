@@ -34,6 +34,33 @@ namespace Rpg_Game_New
 
             return result;
         }
+        public static List<Rogue> GetRogue(string basename)
+        {
+            var client = new MongoClient(connectionString);
+            var database = client.GetDatabase("Rgb_Game");
+            var collection = database.GetCollection<Rogue>("CharacterCollection");
+            var filter = Builders<Rogue>.Filter.Eq("BaseName", basename);
+            var result = collection.Find(filter).ToList();
+            return result;
+        }
+        public static List<Wizard> GetWizard(string basename)
+        {
+            var client = new MongoClient(connectionString);
+            var database = client.GetDatabase("Rgb_Game");
+            var collection = database.GetCollection<Wizard>("CharacterCollection");
+            var filter = Builders<Wizard>.Filter.Eq("BaseName", basename);
+            var result = collection.Find(filter).ToList();
+            return result;
+        }
+        public static List<Warrior> GetWarrior(string basename)
+        {
+            var client = new MongoClient(connectionString);
+            var database = client.GetDatabase("Rgb_Game");
+            var collection = database.GetCollection<Warrior>("CharacterCollection");
+            var filter = Builders<Warrior>.Filter.Eq("BaseName", basename);
+            var result = collection.Find(filter).ToList();
+            return result;
+        }
         public static void Put<T>(string databaseName, string collectionName, ObjectId id, T record)
         {
             var database = MongoDBConnection.ConnectToDatabase(databaseName);
