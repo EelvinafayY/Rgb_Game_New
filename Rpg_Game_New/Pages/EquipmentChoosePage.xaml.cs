@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rpg_Game_New.Heroes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,12 +21,28 @@ namespace Rpg_Game_New.Pages
     /// </summary>
     public partial class EquipmentChoosePage : Page
     {
-        public EquipmentChoosePage()
+        Character contextpers { get; set; }
+        public EquipmentChoosePage(Character character)
         {
             InitializeComponent();
         }
 
         private void RobeBT_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void LeatherArmorBT_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ChainArmorBT_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void PlateArmorBT_Click(object sender, RoutedEventArgs e)
         {
 
         }

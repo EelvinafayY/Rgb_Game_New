@@ -8,7 +8,37 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="EquipmentChoosePage">
 
-    <Grid>
+    <Grid Background="#FFCACAC9">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Button x:Name="RobeBT"  Grid.Column="1" Grid.Row="1" Grid.RowSpan="2"
+        Width="80" Height="60" FontStyle="Oblique" FontSize="10" Content="Robe" Click="RobeBT_Click"></Button>
+        <Button x:Name="LeatherArmorBT"   Grid.Column="2" Grid.Row="1" Grid.RowSpan="2"
+        Width="80" Height="60" FontStyle="Oblique" FontSize="10" Content="Leather Armor" Click="LeatherArmorBT_Click"></Button>
+        <Button x:Name="ChainArmorBT"   Grid.Column="3" Grid.Row="1" Grid.RowSpan="2"
+        Width="80" Height="60" FontStyle="Oblique" FontSize="10" Content="Chain Armor" Click="ChainArmorBT_Click"></Button>
+        <Button x:Name="PlateArmorBT"   Grid.Column="4" Grid.Row="1" Grid.RowSpan="2"
+Width="80" Height="60" FontStyle="Oblique" FontSize="10" Content="Plate Armor" Click="PlateArmorBT_Click"></Button>
         
+        <TextBlock x:Name="NameTBX" Grid.Column="2" Grid.Row="0" Text="NAME"
+   HorizontalAlignment="Center" VerticalAlignment="Center"
+   FontSize="25" FontStyle="Oblique" FontWeight="Bold" Foreground="#FFFFFDFD"></TextBlock>
+        <TextBlock x:Name="NameTB" Grid.Column="3" Grid.Row="0"
+ HorizontalAlignment="Center" VerticalAlignment="Center"
+ Width="100" Height="30" Foreground="Black" Background="#FFF3F3F3" FontStyle="Oblique" Text="{Binding Name}"></TextBlock>
+
     </Grid>
 </Page>
