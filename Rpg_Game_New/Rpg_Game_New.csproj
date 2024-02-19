@@ -129,6 +129,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Equipment\ChainArmor.cs" />
+    <Compile Include="Equipment\Equipments.cs" />
+    <Compile Include="Equipment\LeatherArmor.cs" />
+    <Compile Include="Equipment\PlateArmor.cs" />
+    <Compile Include="Equipment\Robe.cs" />
     <Compile Include="Heroes\Axe.cs" />
     <Compile Include="Heroes\Character.cs" />
     <Compile Include="Heroes\Dagger.cs" />
@@ -144,6 +149,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\EquipmentChoosePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -171,6 +180,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MongoDBConnection.cs" />
+    <Compile Include="Pages\EquipmentChoosePage.xaml.cs">
+      <DependentUpon>EquipmentChoosePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>

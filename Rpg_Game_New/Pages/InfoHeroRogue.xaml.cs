@@ -332,5 +332,12 @@ namespace Rpg_Game_New.Pages
             var persRogue = persesRogue.FirstOrDefault(x => x.Name == NameTB.Text);
             NavigationService.Navigate(new WeaponChoosePage(persRogue));
         }
+
+        private void ChooseEquipmentBT_Click(object sender, RoutedEventArgs e)
+        {
+            var persesRogue = MongoDBConnection.Get<Character>("Rgb_Game", "CharacterCollection");
+            var persRogue = persesRogue.FirstOrDefault(x => x.Name == NameTB.Text);
+            NavigationService.Navigate(new EquipmentChoosePage(persRogue));
+        }
     }
 }

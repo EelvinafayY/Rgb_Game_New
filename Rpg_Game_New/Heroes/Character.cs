@@ -1,4 +1,5 @@
 ﻿using MongoDB.Bson;
+using Rpg_Game_New.Equipment;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace Rpg_Game_New.Heroes
     {
         //private Weapon _weapon;
         public Weapon Weapon {  get; set; }
+        public Equipments Equipments { get; set; }
         public ObjectId _id { get; set; }
         public string BaseName { get; set; }
         public string Name { get; set; }
